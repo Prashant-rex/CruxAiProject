@@ -14,10 +14,12 @@ class FoodTruckView(APIView):
         distance = self.request.query_params.get('distance')
 
         if not latitude or not longitude:
-            return HttpResponseBadRequest('Latitude and Longitude are required')
+            if float(latitude) is None or float(Longitude) is None:
+                return HttpResponseBadRequest('Latitude and Longitude are required')
         
         if not distance:
-            distance = 5
+            if float(distance) is None:
+                distance = 5
         
         co_ords_queryset = Coordinates.objects.all()
 
