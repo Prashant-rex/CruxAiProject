@@ -4,7 +4,7 @@ from django.http import HttpResponseBadRequest
 
 from .models import FoodTruck, Coordinates
 from .serializers import FoodTruckSerializer
-from .utils import calculate_distance
+from .utils import calculate_distance, is_number
 
 class FoodTruckView(APIView):
 
@@ -14,12 +14,12 @@ class FoodTruckView(APIView):
         distance = self.request.query_params.get('distance')
 
         if not latitude or not longitude:
-            if float(latitude) is None or float(Longitude) is None:
+            if not is_number(latitude) or not is_number(longitude):
                 return HttpResponseBadRequest('Latitude and Longitude are required')
         
-        if not distance:
-            if float(distance) is None:
-                distance = 5
+        
+        if not is_number(distance) or not distance:
+            distance = 5
         
         co_ords_queryset = Coordinates.objects.all()
 

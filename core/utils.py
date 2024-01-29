@@ -18,6 +18,14 @@ def calculate_distance(lat1, lon1, lat2, lon2):
 
     return distance
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+
 #method to get data from csv and dump to models
 def import_books(file_path):
     from core.models import FoodTruck, Location, Food

@@ -52,7 +52,7 @@ const App = () => {
         <div>
           <label>Latitude:</label>
           {loadingLocation ? (
-            <input type="text" value="Loading..." readOnly />
+            <input type="number" value="Loading..." readOnly />
           ) : (
             <input
               type="text"
@@ -64,10 +64,10 @@ const App = () => {
         <div>
           <label>Longitude:</label>
           {loadingLocation ? (
-            <input type="text" value="Loading..." readOnly />
+            <input type="number" value="Loading..." readOnly />
           ) : (
             <input
-              type="text"
+              type="number"
               value={longitude}
               onChange={(e) => setLongitude(e.target.value)}
             />
@@ -76,7 +76,7 @@ const App = () => {
         <div>
           <label>Distance (km):</label>
           <input
-            type="text"
+            type="number"
             value={distance}
             onChange={(e) => setDistance(e.target.value)}
           />
